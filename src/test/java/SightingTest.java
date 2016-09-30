@@ -6,5 +6,9 @@ import java.time.LocalDateTime;
 
 public class SightingTest {
 
+  public void sighting_instantiatesCorrectly_true() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Deer", "sick", "young");
+    assertEquals(true, testEndangeredAnimal instanceof EndangeredAnimal);
+  }
 
-} 
+}

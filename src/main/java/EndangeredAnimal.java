@@ -21,6 +21,7 @@ public class EndangeredAnimal extends Beast {
     this.health = health;
     this.age = age;
     type = DATABASE_TYPE;
+
   }
 
   public String getHealth(){
@@ -50,4 +51,16 @@ public class EndangeredAnimal extends Beast {
         return animal;
       }
     }
+
+    public void update(){
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE animals SET health = :health , age = :age WHERE id=:id";
+           con.createQuery(sql)
+          .addParameter("health", this.health)
+          .addParameter("age", this.age)
+          .addParameter("id", id)
+          .executeUpdate();
+        }
+    }
+
 }
