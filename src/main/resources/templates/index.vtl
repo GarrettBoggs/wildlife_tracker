@@ -11,9 +11,17 @@
   <label for="animal"> Endangered Animal </label>
   <input id="animal" name="animal" type="text">
   <label for="health"> health </label>
-  <input id="health" name="health" type="text">
+    <select name="health">
+      <option value=1>healthy</option>
+      <option value=2>decent</option>
+      <option value=3>sick</option>
+    </select>
   <label for="age"> age </label>
-  <input id="age" name="age" type="text">
+    <select name="age">
+      <option value=1>newborn</option>
+      <option value=2>young</option>
+      <option value=3>adult</option>
+    </select>
 
   <button type="submit" class="btn btn-default"> Add Endangered Animal </button>
 </form>
@@ -21,4 +29,9 @@
 <h1> All Animals </h1>
 #foreach ($animal in $animals)
   <h1><a href="/animal/$animal.getId()">$animal.getName()</a><h1>
+#end
+
+<h1> All Endangered Animals </h1>
+#foreach ($animal in $endangeredAnimals)
+  <h1><a href="/endangeredanimal/$animal.getId()">$animal.getName()</a> Health: $animal.getHealth() Age: $animal.getAge()<h1>
 #end

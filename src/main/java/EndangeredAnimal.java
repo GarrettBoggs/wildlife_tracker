@@ -6,13 +6,13 @@ public class EndangeredAnimal extends Beast {
   private String health;
   private String age;
 
-  public static final String healthy = "healthy";
-  public static final String sick = "sick";
-  public static final String decent = "decent";
+  public static final String HEALTHY = "healthy";
+  public static final String SICK = "sick";
+  public static final String DECENT = "decent";
 
-  public static final String young = "young";
-  public static final String newborn = "newborn";
-  public static final String adult = "adult";
+  public static final String YOUNG = "young";
+  public static final String NEWBORN = "newborn";
+  public static final String ADULT = "adult";
 
   public static final String DATABASE_TYPE = "endangeredanimal";
 
