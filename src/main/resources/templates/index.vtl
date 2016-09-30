@@ -1,13 +1,13 @@
 <h1> Welcome to Wildlife Tracker! </h1>
 
-<form action="/newAnimal">
+<form action="/Animal-new" method="post">
   <label for="animal"> Animal </label>
   <input id="animal" name="animal" name="text">
 
   <button type="submit" class="btn btn-default"> Add animal </button>
 </form>
 
-<form action="/newEndangeredAnimal">
+<form action="/EndangeredAnimal-new" method="post">
   <label for="animal"> Endangered Animal </label>
   <input id="animal" name="animal" type="text">
   <label for="health"> health </label>
@@ -17,3 +17,8 @@
 
   <button type="submit" class="btn btn-default"> Add Endangered Animal </button>
 </form>
+
+<h1> All Animals </h1>
+#foreach ($animal in $animals)
+  <h1><a href="/animal/$animal.getId()">$animal.getName()</a><h1>
+#end

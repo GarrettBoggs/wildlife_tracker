@@ -16,11 +16,31 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/", (request, response) -> {
+    post("/Animal-new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("animal");
+      try{
+        Animal newAnimal = new Animal(name);
+        newAnimal.save();
+      }
+      catch (UnsupportedOperationException exception)
+      { }
+      model.put("animals", Animal.all());
       model.put("template", "templates/index.vtl");
-
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+
+    get("/animal/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Animal animal = Animal.find(Integer.parseInt(request.params(":id")));
+
+      model.put("animal", animal);
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
   }
+
 }
