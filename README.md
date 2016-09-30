@@ -21,7 +21,7 @@ _A WildLife tracker program created with spark framework, java, and sql database
 
 ## GitHub link
 
-https://github.com/GarrettBoggs/hair-salon
+https://github.com/GarrettBoggs/wildlife_tracker
 
 ## Licensing
 
