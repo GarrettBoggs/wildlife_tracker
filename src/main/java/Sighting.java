@@ -7,13 +7,13 @@ public class Sighting {
 
   private int id;
   private String location;
-  private String rangerName;
-  private Timestamp sightTime;
+  private String ranger_name;
+  private Timestamp sight_time;
   private int animalid;
 
-  public Sighting(String location, String rangerName, int animalid){
+  public Sighting(String location, String ranger_name, int animalid){
     this.location = location;
-    this.rangerName = rangerName;
+    this.ranger_name = ranger_name;
     this.animalid = animalid;
   }
 
@@ -26,7 +26,7 @@ public class Sighting {
   }
 
   public String getRangerName(){
-    return rangerName;
+    return ranger_name;
   }
 
   public int getAnimalId(){
@@ -34,7 +34,7 @@ public class Sighting {
   }
 
   public Timestamp getSightTime(){
-    return sightTime;
+    return sight_time;
   }
 
   public void save() {
@@ -43,8 +43,7 @@ public class Sighting {
       this.id = (int) con.createQuery(sql, true)
         .addParameter("location", this.location)
         .addParameter("animalid", this.animalid)
-        .addParameter("ranger_name", this.rangerName)
-        .throwOnMappingFailure(false)
+        .addParameter("ranger_name", this.ranger_name)
         .executeUpdate()
         .getKey();
     }
@@ -54,7 +53,6 @@ public class Sighting {
      String sql = "SELECT * FROM sightings";
      try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
-      .throwOnMappingFailure(false)
       .executeAndFetch(Sighting.class);
      }
    }

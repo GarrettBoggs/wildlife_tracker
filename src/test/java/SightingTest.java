@@ -1,14 +1,15 @@
 import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
-import java.time.LocalDateTime;
-
+import java.util.Date;
+import java.text.DateFormat;
+import java.sql.Timestamp;
 
 public class SightingTest {
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
-  
+
   @Test
   public void sighting_instantiatesCorrectly_true() {
     Sighting testSighting = new Sighting("River", "Steve" , 1);
@@ -27,11 +28,15 @@ public class SightingTest {
      assertEquals("River", mySighting.getLocation());
    }
 
-   /* @Test
-   public void getCreatedAt_instantiatesWithCurrentTime_today() {
-     Sighting mySighting = new Sighting("River", "Steve", 1);
-     assertEquals(LocalDateTime.now().getDayOfWeek(), mySighting.getCreatedAt().getDayOfWeek());
-   } */
+    @Test
+  public void save_recordsTimeOfCreationInDatabase() {
+    Sighting testSighting = new Sighting("River", "Steve", 1);
+    testSighting.save();
+    Timestamp savedSite = Sighting.find(testSighting.getId()).getSightTime();
+    Timestamp rightNow = new Timestamp(new Date().getTime());
+    assertEquals(rightNow.getDay(), savedSite.getDay());
+  }
+
 
    @Test
    public void all_returnsAllInstancesOfSighting_true() {
