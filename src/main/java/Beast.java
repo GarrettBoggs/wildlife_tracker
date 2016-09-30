@@ -37,12 +37,18 @@ public abstract class Beast {
 
     public void save() {
       try(Connection con = DB.sql2o.open()) {
+        if(name.equals(""))
+        {
+          throw new UnsupportedOperationException("You need to name the animals!");
+        }
+        
         String sql = "INSERT INTO animals(name, type) VALUES (:name, :type)";
         this.id = (int) con.createQuery(sql, true)
           .addParameter("name", this.name)
           .addParameter("type", this.type)
           .executeUpdate()
           .getKey();
+
       }
     }
 

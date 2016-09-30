@@ -13,6 +13,7 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/index.vtl");
 
+      model.put("animals", Animal.all());
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -36,10 +37,27 @@ public class App {
       Animal animal = Animal.find(Integer.parseInt(request.params(":id")));
 
       model.put("animal", animal);
-      model.put("template", "templates/index.vtl");
+      model.put("template", "templates/animal.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/animal/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Animal animal = Animal.find(Integer.parseInt(request.params(":id")));
+
+      String location = request.queryParams("location");
+      String rangerName = request.queryParams("name");
+      Sighting newSighting = new Sighting(location, rangerName, animal.getId());
+      try{
+        newSighting.save();
+      }
+      catch (UnsupportedOperationException exception)
+      { }
+      model.put("sightings", animal.getSightings());
+      model.put("animal", animal);
+      model.put("template", "templates/animal.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
   }
 

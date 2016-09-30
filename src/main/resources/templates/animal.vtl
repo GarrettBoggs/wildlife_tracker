@@ -1,4 +1,19 @@
 <h1> $animal.getName() </h1>
 
+<form action="/animal/$animal.getId()" method="post">
+  <label for="location"> Location </label>
+  <input id="location" name="location" name="text">
+  <label for="name"> Ranger Name </label>
+  <input id="name" name="name" name="text">
+
+  <button type="submit" class="btn btn-default"> Add sighting </button>
+</form>
+
+<h1> Total sightings! </h1>
+#foreach ($sighting in $sightings)
+  <h1> Location: $sighting.getLocation() </h1>
+  <h1> Ranger: $sighting.getRangerName() </h1>
+  <h1> Time: $sighting.getSightTime() </h1>
+#end
 
 <a href ="/"> Back to home </a>

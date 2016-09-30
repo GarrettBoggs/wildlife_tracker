@@ -8,15 +8,11 @@ public class Animal extends Beast{
 
     public Animal(String name){
       this.name = name;
-      if(name == null)
-      {
-        throw new UnsupportedOperationException("You need to name the animals!");
-      }
       type = DATABASE_TYPE;
     }
 
     public static List<Animal> all() {
-    String sql = "SELECT * FROM animals WHERE type='animal'";;
+    String sql = "SELECT * FROM animals WHERE type='animal'";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
       .throwOnMappingFailure(false)

@@ -38,6 +38,10 @@ public class Sighting {
   }
 
   public void save() {
+    if(this.location.equals("") || this.ranger_name.equals("") )
+    {
+      throw new UnsupportedOperationException("You need fill out all fields!");
+    }
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO sightings(location, animalid, ranger_name, sight_time) VALUES (:location, :animalid, :ranger_name, now() );";
       this.id = (int) con.createQuery(sql, true)
