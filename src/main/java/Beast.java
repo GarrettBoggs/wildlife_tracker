@@ -41,33 +41,14 @@ public abstract class Beast {
         {
           throw new UnsupportedOperationException("You need to name the animals!");
         }
-        
+
         String sql = "INSERT INTO animals(name, type) VALUES (:name, :type)";
         this.id = (int) con.createQuery(sql, true)
           .addParameter("name", this.name)
           .addParameter("type", this.type)
           .executeUpdate()
           .getKey();
-
       }
     }
 
-      public List<Object> getBeasts() {
-      List<Object> allAnimals = new ArrayList<Object>();
-
-      try(Connection con = DB.sql2o.open()) {
-        String sqlanimal = "SELECT * FROM animals WHERE type='animal';";
-        List<Animal> animals = con.createQuery(sqlanimal)
-          .addParameter("id", this.id)
-          .executeAndFetch(Animal.class);
-          allAnimals.addAll(animals);
-
-        String sqleanimal = "SELECT * FROM animals WHERE type='endangeredanimal';";
-        List<EndangeredAnimal> endangeredAnimals = con.createQuery(sqleanimal)
-          .addParameter("id", this.id)
-          .executeAndFetch(EndangeredAnimal.class);
-          allAnimals.addAll(endangeredAnimals);
-        }
-        return allAnimals;
-      }
   }

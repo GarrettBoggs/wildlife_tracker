@@ -10,7 +10,7 @@ _A WildLife tracker program created with spark framework, java, and sql database
 
 * In PSQL:
 * CREATE DATABASE wildlife_tracker;
-* CREATE TABLE animals (id serial PRIMARY KEY, name varchar, details varchar);
+* CREATE TABLE animals (id serial PRIMARY KEY, name varchar, type varchar, health varchar, age varchar);
 * CREATE TABLE sightings (id serial PRIMARY KEY, int animalid, ranger_name varchar, location varchar, sight_time timestamp);
 * CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;
 

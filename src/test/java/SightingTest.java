@@ -17,18 +17,18 @@ public class SightingTest {
   }
 
   @Test
-   public void Sighting_instantiatesCorrectly_true() {
-     Sighting mySighting = new Sighting("River", "Steve", 1);
-     assertEquals(true, mySighting instanceof Sighting);
-   }
+  public void Sighting_instantiatesCorrectly_true() {
+    Sighting mySighting = new Sighting("River", "Steve", 1);
+    assertEquals(true, mySighting instanceof Sighting);
+  }
 
-   @Test
-   public void Sighting_instantiatesWithLocation_String() {
-     Sighting mySighting = new Sighting("River", "Steve", 1);
-     assertEquals("River", mySighting.getLocation());
-   }
+  @Test
+  public void Sighting_instantiatesWithLocation_String() {
+    Sighting mySighting = new Sighting("River", "Steve", 1);
+    assertEquals("River", mySighting.getLocation());
+  }
 
-    @Test
+  @Test
   public void save_recordsTimeOfCreationInDatabase() {
     Sighting testSighting = new Sighting("River", "Steve", 1);
     testSighting.save();
@@ -37,16 +37,15 @@ public class SightingTest {
     assertEquals(rightNow.getDay(), savedSite.getDay());
   }
 
-
-   @Test
-   public void all_returnsAllInstancesOfSighting_true() {
-     Sighting firstSighting = new Sighting("River", "Steve", 1);
-     firstSighting.save();
-     Sighting secondSighting = new Sighting("Volcano", "Zelda", 1);
-     secondSighting.save();
-     assertEquals(true, Sighting.all().get(0).equals(firstSighting));
-     assertEquals(true, Sighting.all().get(1).equals(secondSighting));
-   }
+  @Test
+  public void all_returnsAllInstancesOfSighting_true() {
+    Sighting firstSighting = new Sighting("River", "Steve", 1);
+    firstSighting.save();
+    Sighting secondSighting = new Sighting("Volcano", "Zelda", 1);
+    secondSighting.save();
+    assertEquals(true, Sighting.all().get(0).equals(firstSighting));
+    assertEquals(true, Sighting.all().get(1).equals(secondSighting));
+  }
 
    @Test
    public void getId_tasksInstantiateWithAnID_1() {
