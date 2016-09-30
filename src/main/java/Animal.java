@@ -8,6 +8,10 @@ public class Animal extends Beast{
 
     public Animal(String name){
       this.name = name;
+      if(name == null)
+      {
+        throw new UnsupportedOperationException("You need to name the animals!");
+      }
       type = DATABASE_TYPE;
     }
 
