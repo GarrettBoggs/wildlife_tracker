@@ -71,6 +71,15 @@ public class AnimalTest {
   }
 
   @Test
+  public void delete_deletesAnimal_true() {
+    Animal myAnimal = new Animal("Fish");
+    myAnimal.save();
+    int myAnimalId = myAnimal.getId();
+    myAnimal.delete();
+    assertEquals(null, Animal.find(myAnimalId));
+  }
+
+  @Test
   public void getSightings_retrievesALlSightingsFromDatabase_tasksList() {
     Animal myAnimal = new Animal("Elk");
     myAnimal.save();
@@ -81,5 +90,6 @@ public class AnimalTest {
     Sighting[] tasks = new Sighting[] { firstSighting, secondSighting };
     assertTrue(myAnimal.getSightings().containsAll(Arrays.asList(tasks)));
   }
+
 
 }

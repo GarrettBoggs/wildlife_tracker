@@ -69,6 +69,16 @@ public class EndangeredAnimalTest {
   }
 
   @Test
+  public void delete_deletesEndangeredanimal_true() {
+    EndangeredAnimal myAnimal = new EndangeredAnimal("Fish", "healthy", "young");
+    myAnimal.save();
+    int myAnimalId = myAnimal.getId();
+    myAnimal.delete();
+    assertEquals(null, EndangeredAnimal.find(myAnimalId));
+  }
+
+
+  @Test
   public void update_healthStoredInDatabase_true() {
     EndangeredAnimal myEndangeredAnimal = new EndangeredAnimal("Elk", "healthy", "young");
     myEndangeredAnimal.save();
