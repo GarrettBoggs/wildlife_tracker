@@ -77,15 +77,22 @@ public class EndangeredAnimalTest {
     assertEquals(null, EndangeredAnimal.find(myAnimalId));
   }
 
-
   @Test
-  public void update_healthStoredInDatabase_true() {
+  public void save_healthStoredInDatabase_true() {
     EndangeredAnimal myEndangeredAnimal = new EndangeredAnimal("Elk", "healthy", "young");
     myEndangeredAnimal.save();
-    myEndangeredAnimal.update();
     EndangeredAnimal savedEndangeredAnimal = EndangeredAnimal.all().get(0);
     assertEquals(myEndangeredAnimal.getHealth(), savedEndangeredAnimal.getHealth());
     assertEquals(myEndangeredAnimal.getAge(), savedEndangeredAnimal.getAge());
   }
 
+  @Test
+  public void update_updatesEndangeredAnimal_true() {
+    EndangeredAnimal myAnimal = new EndangeredAnimal("FlameDuck", EndangeredAnimal.HEALTHY, EndangeredAnimal.ADULT);
+    myAnimal.save();
+    myAnimal.update("PolarBear", EndangeredAnimal.SICK, EndangeredAnimal.NEWBORN);
+    assertEquals("PolarBear", EndangeredAnimal.find(myAnimal.getId()).getName());
+    assertEquals("sick", EndangeredAnimal.find(myAnimal.getId()).getHealth());
+    assertEquals("newborn", EndangeredAnimal.find(myAnimal.getId()).getAge());
+  }
 }

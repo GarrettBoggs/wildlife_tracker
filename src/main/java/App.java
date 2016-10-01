@@ -61,7 +61,6 @@ public class App {
       EndangeredAnimal newAnimal = new EndangeredAnimal(name, realHealth, realAge);
       try{
         newAnimal.save();
-        newAnimal.update();
       }
       catch (UnsupportedOperationException exception)
       { }

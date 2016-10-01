@@ -52,12 +52,31 @@ public class EndangeredAnimal extends Beast {
       }
     }
 
-    public void update(){
+    public void save() {
       try(Connection con = DB.sql2o.open()) {
-        String sql = "UPDATE animals SET health = :health , age = :age WHERE id=:id";
-           con.createQuery(sql)
+        if(name.equals(""))
+        {
+          throw new UnsupportedOperationException("You need to name the animals!");
+        }
+
+        String sql = "INSERT INTO animals(name, type, health, age) VALUES (:name, :type, :health, :age)";
+        this.id = (int) con.createQuery(sql, true)
+          .addParameter("name", this.name)
+          .addParameter("type", this.type)
           .addParameter("health", this.health)
           .addParameter("age", this.age)
+          .executeUpdate()
+          .getKey();
+      }
+    }
+
+    public void update(String name, String health, String age){
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE animals SET name = :name , health = :health , age = :age WHERE id=:id";
+           con.createQuery(sql)
+          .addParameter("name", name)
+          .addParameter("health", health)
+          .addParameter("age", age)
           .addParameter("id", id)
           .executeUpdate();
         }
