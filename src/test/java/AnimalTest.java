@@ -91,5 +91,12 @@ public class AnimalTest {
     assertTrue(myAnimal.getSightings().containsAll(Arrays.asList(tasks)));
   }
 
+  @Test
+  public void update_updatesAnimalNames_true() {
+    Animal myAnimal = new Animal("FlameDuck");
+    myAnimal.save();
+    myAnimal.update("PolarBear");
+    assertEquals("PolarBear", Animal.find(myAnimal.getId()).getName());
+  }
 
 }

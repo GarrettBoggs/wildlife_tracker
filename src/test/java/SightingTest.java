@@ -95,4 +95,14 @@ public class SightingTest {
      assertEquals(savedSighting.getAnimalId(), myAnimal.getId());
    }
 
+   @Test
+   public void delete_deletesSighting_true() {
+     Sighting mySighting = new Sighting("River", "Steve", 1);
+     mySighting.save();
+     int mySightingId = mySighting.getId();
+     mySighting.delete();
+     assertEquals(null, Sighting.find(mySightingId));
+   }
  }
+
+ 
