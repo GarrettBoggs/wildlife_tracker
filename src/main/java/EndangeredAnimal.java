@@ -58,7 +58,6 @@ public class EndangeredAnimal extends Beast {
         {
           throw new UnsupportedOperationException("You need to name the animals!");
         }
-
         String sql = "INSERT INTO animals(name, type, health, age) VALUES (:name, :type, :health, :age)";
         this.id = (int) con.createQuery(sql, true)
           .addParameter("name", this.name)

@@ -91,4 +91,15 @@ public class Sighting {
        .executeUpdate();
      }
    }
+
+   public void update(String location, String ranger_name){
+     try(Connection con = DB.sql2o.open()) {
+       String sql = "UPDATE sightings SET location = :location , ranger_name = :ranger_name WHERE id=:id";
+          con.createQuery(sql)
+          .addParameter("location", location)
+          .addParameter("ranger_name", ranger_name)
+          .addParameter("id", id)
+          .executeUpdate();
+       }
+   }
 }

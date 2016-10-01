@@ -103,6 +103,13 @@ public class SightingTest {
      mySighting.delete();
      assertEquals(null, Sighting.find(mySightingId));
    }
- }
 
- 
+   @Test
+   public void update_updatesSighting_true() {
+     Sighting myAnimal = new Sighting("Forest","Steve", 1);
+     myAnimal.save();
+     myAnimal.update("Lake","Jenna");
+     assertEquals("Lake", Sighting.find(myAnimal.getId()).getLocation());
+     assertEquals("Jenna", Sighting.find(myAnimal.getId()).getRangerName());
+   }
+ }
