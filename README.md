@@ -49,6 +49,11 @@ https://github.com/GarrettBoggs/wildlife_tracker
   * Example input: User clicks delete button
   * Example output: The object is deleted
 
+  **Animals, EndangeredAnimals, and Sightings can be updated**
+
+  * Example input: User fills out necessary info and clicks update button
+  * Example output: Information is updated
+
   **One Animal or EndangeredAnimal can have multiple sightings**
 
   * Example input: New Animal: "Zebra"
