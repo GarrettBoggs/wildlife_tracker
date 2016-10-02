@@ -172,5 +172,39 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/sighting/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Sighting sighting = Sighting.find(Integer.parseInt(request.params(":id")));
+
+      model.put("sighting", sighting);
+      model.put("template", "templates/sighting.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/sighting/:id/delete", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Sighting sighting = Sighting.find(Integer.parseInt(request.params(":id")));
+      sighting.delete();
+
+      model.put("animals", Animal.all());
+      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/sighting/:id/update", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Sighting sighting = Sighting.find(Integer.parseInt(request.params(":id")));
+      String location = request.queryParams("location");
+      String name = request.queryParams("name");
+      sighting.update(location,name);
+
+      model.put("animals", Animal.all());
+      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
   }
 }

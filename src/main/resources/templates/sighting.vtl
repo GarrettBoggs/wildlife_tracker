@@ -1,0 +1,19 @@
+<h1> Sighting Page </h1>
+
+<h2> Location: $sighting.getLocation() </h2>
+<h2> Ranger Name: $sighting.getRangerName() </h2>
+<h2> Sight Time: $sighting.getSightTime() </h2>
+
+  <form action="/sighting/$sighting.getId()/delete" method="post">
+    <button type="submit" class="btn btn-danger"> Delete Sighting </button>
+  </form>
+
+  <form action="/sighting/$sighting.getId()/update">
+    <label for="location"> New Location </label>
+    <input id="location" name="location" type="text">
+    <label for="name"> New Ranger Name </label>
+    <input id="name" name="name" type="text">
+    <button type="submit" class="btn btn-info"> Update Sighting </button>
+  </form>
+
+<a href="/">Return to Home Page </a>

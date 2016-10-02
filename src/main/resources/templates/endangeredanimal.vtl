@@ -35,9 +35,11 @@
 
 <h1> Total sightings! </h1>
 #foreach ($sighting in $sightings)
-  <h1> Location: $sighting.getLocation() </h1>
-  <h1> Ranger: $sighting.getRangerName() </h1>
-  <h1> Time: $sighting.getSightTime() </h1>
+  <a href="/sighting/$sighting.getId()">
+    <h1> Location: $sighting.getLocation() </h1>
+    <h1> Ranger: $sighting.getRangerName() </h1>
+    <h1> Time: $sighting.getSightTime() </h1>
+  </a>
 #end
 
 <a href ="/"> Back to home </a>
