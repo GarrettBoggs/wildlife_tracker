@@ -74,6 +74,7 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Animal animal = Animal.find(Integer.parseInt(request.params(":id")));
 
+      model.put("sightings", animal.getSightings());
       model.put("animal", animal);
       model.put("template", "templates/animal.vtl");
       return new ModelAndView(model, layout);
@@ -105,15 +106,6 @@ public class App {
       model.put("animals", Animal.all());
       model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("template", "templates/index.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/endangeredanimal/:id", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      EndangeredAnimal animal = EndangeredAnimal.find(Integer.parseInt(request.params(":id")));
-
-      model.put("animal", animal);
-      model.put("template", "templates/endangeredanimal.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -152,11 +144,33 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       EndangeredAnimal animal = EndangeredAnimal.find(Integer.parseInt(request.params(":id")));
 
+      model.put("sightings", animal.getSightings());
       model.put("animal", animal);
       model.put("template", "templates/endangeredanimal.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/animal/:id/delete", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Animal animal = Animal.find(Integer.parseInt(request.params(":id")));
+      animal.delete();
+      animal.deleteSightings();
+      model.put("animals", Animal.all());
+      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/endangeredanimal/:id/delete", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      EndangeredAnimal animal = EndangeredAnimal.find(Integer.parseInt(request.params(":id")));
+      animal.delete();
+      animal.deleteSightings();
+      model.put("animals", Animal.all());
+      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
   }
 }

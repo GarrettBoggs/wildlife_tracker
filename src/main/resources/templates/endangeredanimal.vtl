@@ -19,6 +19,10 @@
   <button type="submit" class="btn btn-default"> Update Endangered Animal info </button>
 </form>
 
+<form action="/endangeredanimal/$animal.getId()/delete" method="post">
+  <button type="submit" class="btn btn-danger"> Delete Animal </button>
+</form>
+
 <form action="/endangeredanimal/$animal.getId()" method="post">
   <label for="location"> Location </label>
   <input id="location" name="location" name="text">

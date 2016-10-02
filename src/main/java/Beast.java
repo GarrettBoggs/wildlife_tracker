@@ -24,6 +24,15 @@ public abstract class Beast {
      }
    }
 
+   public void deleteSightings() {
+     try(Connection con = DB.sql2o.open()) {
+       String sql = "DELETE FROM sightings where animalId=:id";
+       con.createQuery(sql)
+         .addParameter("id", this.id)
+         .executeUpdate();
+     }
+   }
+
    @Override
    public boolean equals(Object otherAnimal) {
      if (!(otherAnimal instanceof Beast)) {
