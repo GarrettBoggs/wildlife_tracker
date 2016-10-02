@@ -44,6 +44,11 @@ https://github.com/GarrettBoggs/wildlife_tracker
   * Example input: New Sighting: Location: Lake Ranger: Steve
   * Example output: Sighting -- Location: Lake Ranger: Steve Time: 2016-09-30 15:06:21.711323
 
+  **Animals, EndangeredAnimals, and Sightings can be deleted**
+
+  * Example input: User clicks delete button
+  * Example output: The object is deleted
+
   **One Animal or EndangeredAnimal can have multiple sightings**
 
   * Example input: New Animal: "Zebra"

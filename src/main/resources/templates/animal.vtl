@@ -1,5 +1,16 @@
 <h1> $animal.getName() </h1>
 
+<form action="/animal/$animal.getId()/update" method="post">
+  <label for="name"> New Name:</label>
+  <input id="name" name="name" name="text">
+  <button type="submit" class="btn btn-default"> Update Animal Name </button>
+</form>
+
+<form action="/animal/$animal.getId()/delete" method="post">
+  <button type="submit" class="btn btn-danger"> Delete Animal </button>
+</form>
+
+
 <form action="/animal/$animal.getId()" method="post">
   <label for="location"> Location </label>
   <input id="location" name="location" name="text">

@@ -97,6 +97,17 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/animal/:id/update", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Animal animal = Animal.find(Integer.parseInt(request.params(":id")));
+      String name = request.queryParams("name");
+      animal.update(name);
+      model.put("animals", Animal.all());
+      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     get("/endangeredanimal/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       EndangeredAnimal animal = EndangeredAnimal.find(Integer.parseInt(request.params(":id")));
@@ -124,7 +135,28 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/endangeredanimal/:id/update", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      EndangeredAnimal animal = EndangeredAnimal.find(Integer.parseInt(request.params(":id")));
+      String name = request.queryParams("name");
+      String health = request.queryParams("health");
+      String age = request.queryParams("age");
+      animal.update(name, health, age);
+      model.put("animals", Animal.all());
+      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/endangeredanimal/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      EndangeredAnimal animal = EndangeredAnimal.find(Integer.parseInt(request.params(":id")));
+
+      model.put("animal", animal);
+      model.put("template", "templates/endangeredanimal.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
 
   }
-
 }

@@ -1,5 +1,24 @@
 <h1> $animal.getName() : $animal.getHealth() : $animal.getAge() <h1>
 
+<form action="/endangeredanimal/$animal.getId()/update" method="post">
+  <label for="name"> Endangered Animal </label>
+  <input id="name" name="name" type="text">
+  <label for="health"> health </label>
+    <select name="health">
+      <option value="healthy">healthy</option>
+      <option value="decent">decent</option>
+      <option value="sick">sick</option>
+    </select>
+  <label for="age"> age </label>
+    <select name="age">
+      <option value="newborn">newborn</option>
+      <option value="young">young</option>
+      <option value="adult">adult</option>
+    </select>
+
+  <button type="submit" class="btn btn-default"> Update Endangered Animal info </button>
+</form>
+
 <form action="/endangeredanimal/$animal.getId()" method="post">
   <label for="location"> Location </label>
   <input id="location" name="location" name="text">
