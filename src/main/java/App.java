@@ -102,7 +102,11 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Animal animal = Animal.find(Integer.parseInt(request.params(":id")));
       String name = request.queryParams("name");
-      animal.update(name);
+      try{
+        animal.update(name);
+      }
+      catch (UnsupportedOperationException exception)
+      { }
       model.put("animals", Animal.all());
       model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("template", "templates/index.vtl");
@@ -133,7 +137,11 @@ public class App {
       String name = request.queryParams("name");
       String health = request.queryParams("health");
       String age = request.queryParams("age");
-      animal.update(name, health, age);
+      try {
+        animal.update(name, health, age);
+      }
+      catch (UnsupportedOperationException exception)
+      { }
       model.put("animals", Animal.all());
       model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("template", "templates/index.vtl");

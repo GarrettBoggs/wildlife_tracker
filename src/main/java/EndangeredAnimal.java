@@ -71,6 +71,10 @@ public class EndangeredAnimal extends Beast {
 
     public void update(String name, String health, String age){
       try(Connection con = DB.sql2o.open()) {
+        if(name.equals(""))
+        {
+          throw new UnsupportedOperationException("You need to name the animals!");
+        }
         String sql = "UPDATE animals SET name = :name , health = :health , age = :age WHERE id=:id";
            con.createQuery(sql)
           .addParameter("name", name)

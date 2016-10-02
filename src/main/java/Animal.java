@@ -47,6 +47,9 @@ public class Animal extends Beast{
 
     public void update(String name) {
     try(Connection con = DB.sql2o.open()) {
+    if(name.equals("")){
+      throw new UnsupportedOperationException("You need to name the animals!");
+    }
     String sql = "UPDATE animals SET name = :name WHERE id = :id";
     con.createQuery(sql)
       .addParameter("name", name)
