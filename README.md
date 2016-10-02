@@ -56,8 +56,6 @@ https://github.com/GarrettBoggs/wildlife_tracker
 
   **One Animal or EndangeredAnimal can have multiple sightings**
 
-  * Example input: New Animal: "Zebra"
-  * Example output: Animal: Zebra
   * Example input: Select Zebra
   * Example output: shown all sightings of the Zebra
 
