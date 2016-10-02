@@ -205,8 +205,11 @@ public class App {
       Sighting sighting = Sighting.find(Integer.parseInt(request.params(":id")));
       String location = request.queryParams("location");
       String name = request.queryParams("name");
-      sighting.update(location,name);
-
+      try{
+        sighting.update(location,name);
+      }
+      catch (UnsupportedOperationException exception)
+      { }
       model.put("animals", Animal.all());
       model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("template", "templates/index.vtl");

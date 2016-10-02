@@ -94,6 +94,10 @@ public class Sighting {
 
    public void update(String location, String ranger_name){
      try(Connection con = DB.sql2o.open()) {
+       if(location.equals("") || ranger_name.equals("") )
+       {
+         throw new UnsupportedOperationException("You need fill out all fields!");
+       }
        String sql = "UPDATE sightings SET location = :location , ranger_name = :ranger_name WHERE id=:id";
           con.createQuery(sql)
           .addParameter("location", location)
