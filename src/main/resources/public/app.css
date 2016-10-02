@@ -1,0 +1,16 @@
+html{
+  background: url(images/dinoBackground.jpg);
+}
+
+h1{
+  color: gray;
+  text-shadow: 2px 2px black;
+}
+
+input{
+  margin-top: 20px;
+}
+.container{
+  background: #F59A1D;
+  font-size: 25px;
+}

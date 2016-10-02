@@ -4,7 +4,7 @@
   <label for="animal"> Animal </label>
   <input id="animal" name="animal" name="text">
 
-  <button type="submit" class="btn btn-default"> Add animal </button>
+  <button type="submit" class="btn btn-success"> Add animal </button>
 </form>
 
 <form action="/EndangeredAnimal-new" method="post">
@@ -23,15 +23,21 @@
       <option value=3>adult</option>
     </select>
 
-  <button type="submit" class="btn btn-default"> Add Endangered Animal </button>
+  <button type="submit" class="btn btn-success"> Add Endangered Animal </button>
 </form>
 
-<h1> All Animals </h1>
-#foreach ($animal in $animals)
-  <h1><a href="/animal/$animal.getId()">$animal.getName()</a><h1>
-#end
-
-<h1> All Endangered Animals </h1>
-#foreach ($animal in $endangeredAnimals)
-  <h1><a href="/endangeredanimal/$animal.getId()">$animal.getName()</a> Health: $animal.getHealth() Age: $animal.getAge()<h1>
-#end
+<div class="row">
+  <div class="col-md-6">
+    <h1> All Animals </h1>
+    #foreach ($animal in $animals)
+      <h1><a href="/animal/$animal.getId()">$animal.getName()</a><h1>
+    #end
+  </div>
+  
+  <div class="col-md-6">
+    <h1> All Endangered Animals </h1>
+    #foreach ($animal in $endangeredAnimals)
+      <h1><a href="/endangeredanimal/$animal.getId()">$animal.getName()</a> Health: $animal.getHealth() Age: $animal.getAge()<h1>
+    #end
+  </div>
+</div>
