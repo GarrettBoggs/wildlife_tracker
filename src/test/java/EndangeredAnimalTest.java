@@ -95,4 +95,16 @@ public class EndangeredAnimalTest {
     assertEquals("sick", EndangeredAnimal.find(myAnimal.getId()).getHealth());
     assertEquals("newborn", EndangeredAnimal.find(myAnimal.getId()).getAge());
   }
+
+  @Test
+  public void deleteSightings_deletesALlSightingsFromAnimal_tasksList() {
+    EndangeredAnimal myAnimal = new EndangeredAnimal("FishBeast", EndangeredAnimal.HEALTHY, EndangeredAnimal.ADULT);
+    myAnimal.save();
+    Sighting firstSighting = new Sighting("Volcano", "Rock", myAnimal.getId());
+    firstSighting.save();
+    Sighting secondSighting = new Sighting("River", "Spade", myAnimal.getId());
+    secondSighting.save();
+    myAnimal.deleteSightings();
+    assertTrue(myAnimal.getSightings().size() < 1);
+  }
 }

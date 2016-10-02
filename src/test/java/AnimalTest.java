@@ -99,4 +99,15 @@ public class AnimalTest {
     assertEquals("PolarBear", Animal.find(myAnimal.getId()).getName());
   }
 
+  @Test
+  public void deleteSightings_deletesALlSightingsFromAnimal_tasksList() {
+    Animal myAnimal = new Animal("Elk");
+    myAnimal.save();
+    Sighting firstSighting = new Sighting("Volcano", "Garfield", myAnimal.getId());
+    firstSighting.save();
+    Sighting secondSighting = new Sighting("River", "Falco", myAnimal.getId());
+    secondSighting.save();
+    myAnimal.deleteSightings();
+    assertTrue(myAnimal.getSightings().size() < 1);
+  }
 }

@@ -107,9 +107,8 @@ public class App {
       }
       catch (UnsupportedOperationException exception)
       { }
-      model.put("animals", Animal.all());
-      model.put("endangeredAnimals", EndangeredAnimal.all());
-      model.put("template", "templates/index.vtl");
+      String url = String.format("/animal/%d", animal.getId());
+      response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -142,9 +141,8 @@ public class App {
       }
       catch (UnsupportedOperationException exception)
       { }
-      model.put("animals", Animal.all());
-      model.put("endangeredAnimals", EndangeredAnimal.all());
-      model.put("template", "templates/index.vtl");
+      String url = String.format("/endangeredanimal/%d", animal.getId());
+      response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -200,7 +198,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/sighting/:id/update", (request, response) -> {
+    post("/sighting/:id/update", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Sighting sighting = Sighting.find(Integer.parseInt(request.params(":id")));
       String location = request.queryParams("location");
@@ -210,9 +208,8 @@ public class App {
       }
       catch (UnsupportedOperationException exception)
       { }
-      model.put("animals", Animal.all());
-      model.put("endangeredAnimals", EndangeredAnimal.all());
-      model.put("template", "templates/index.vtl");
+      String url = String.format("/sighting/%d", sighting.getId());
+      response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
