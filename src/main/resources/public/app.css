@@ -10,7 +10,16 @@ h1{
 input{
   margin-top: 20px;
 }
+
 .container{
   background: #F59A1D;
   font-size: 25px;
+}
+
+.animalDelete{
+  margin-top: 30px;
+}
+
+#background{
+  background: gray;
 }
